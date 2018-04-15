@@ -1,8 +1,8 @@
 'use strict';
 
-import React {Component} from 'react';
+import React ,{Component} from 'react';
 import {
-    StytleSheet,
+    StyleSheet,
     FlatList,
     View,
     Text,
@@ -35,6 +35,7 @@ class Home extends Component{
             );
         }else{
             return(
+
                 <View style={{flex:1, backgroundColor: '#F5F5F5', paddingTop:20}}>
                     <FlatList
                         ref='listRef'
@@ -49,11 +50,12 @@ class Home extends Component{
     renderItem({item, index}){
         return(
             <View style={styles.row}>
-                <Text style={styles.titles}>
-                    {parseInt(index)+1}{". "}{item.title}
+                //This is one instance of the movie
+                <Text style={styles.title}>
+                    {item.title}
                 </Text>
                 <Text style={styles.description}>
-                    {item.description}
+                    {item.overview}
                 </Text>
             </View>
         )
