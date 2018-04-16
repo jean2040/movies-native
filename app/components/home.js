@@ -6,6 +6,7 @@ import {
     FlatList,
     View,
     Text,
+    Image,
     ActivityIndicator
 } from 'react-native';
 
@@ -48,12 +49,16 @@ class Home extends Component{
     }
 
     renderItem({item, index}){
+        const image = 'https://image.tmdb.org/t/p/w154' + item.poster_path;
         return(
             <View style={styles.row}>
-                //This is one instance of the movie
+
                 <Text style={styles.title}>
                     {item.title}
                 </Text>
+                <Image
+                    style={styles.poster}
+                    source={{uri: image }} />
                 <Text style={styles.description}>
                     {item.overview}
                 </Text>
@@ -100,13 +105,18 @@ const styles = StyleSheet.create({
     },
 
     title:{
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: "600"
     },
 
     description:{
         marginTop: 5,
         fontSize: 14,
+    },
+    poster:{
+        width: 150,
+        height: 250,
+        alignItems: 'center'
     }
 });
 
