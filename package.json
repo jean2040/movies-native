@@ -25,6 +25,10 @@
     "react-native": "0.54.0",
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-switch-pro": "^0.4.10",
+    "react-native-toolbar": "^1.0.7",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"

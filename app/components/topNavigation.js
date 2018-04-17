@@ -1,43 +1,21 @@
-import React ,{Component} from 'react';
+import React, { Component } from 'react';
 import {
-    StyleSheet,
-    FlatList,
-    View,
     Text,
-    Image,
-    ActivityIndicator
+    StyleSheet,
+    View,
+    Switch,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-class Navigation extends Component {
+
+
+export default class TopNavigation extends Component {
     render() {
+        return (
+            <View style={{flex: 1, flexDirection: 'row'}}>
+                <Switch onSyncPress={value => this.setState({value})}/>
 
+            </View>
+        );
     }
 }
-
-
-
-
-const styles = StyleSheet.create({
-
-
-    row:{
-        borderBottomWidth: 1,
-        borderColor: "#ccc",
-        padding: 10
-    },
-
-    title:{
-        fontSize: 20,
-        fontWeight: "600"
-    },
-
-    description:{
-        marginTop: 5,
-        fontSize: 14,
-    },
-    poster:{
-        width: 150,
-        height: 250,
-        alignItems: 'center'
-    }
-});
