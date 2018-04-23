@@ -28,7 +28,7 @@ export default class PublishApp extends Component{
                 <ScrollView style={styles.movieHome}>
                     <Home />
                 </ScrollView>
-                <View style={styles.bottomNav}>
+                <View>
                     <BottomNavigation />
                 </View>
 
