@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {
     StyleSheet,
     View,
     StatusBar,
     ScrollView,
     Text,
-    Image,
+    Image
 } from 'react-native';
-
-
+import {TabNavigator, TabBarBottom} from 'react-navigation';
 import Home from './home';
 import TopNavigation from './topNavigation';
-import BottomNavigation from './bottomNavigation';
+import Movie from "./movie/movie";
+import Favorites from "./favorites/favorites";
 
-
-
-
-
-export default class PublishApp extends Component{
+class PublishApp extends Component{
     render(){
         return(
             <View style={styles.container}>
@@ -28,16 +25,51 @@ export default class PublishApp extends Component{
                 <ScrollView style={styles.movieHome}>
                     <Home />
                 </ScrollView>
-                <View>
-                    <BottomNavigation />
-                </View>
-
 
             </View>
 
         );
     }
 }
+
+export default TabNavigator({
+    Home: { screen: PublishApp },
+    Favorites: { screen: Favorites },
+    Random: { screen: Movie },
+},
+    {
+        navigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, tintColor }) => {
+                const { routeName } = navigation.state;
+                let iconName;
+                if (routeName === 'Home') {
+                    iconName = `ios-home${focused ? '' : '-outline'}`;
+                } else if (routeName === 'Favorites') {
+                    iconName = `ios-heart${focused ? '' : '-outline'}`;
+                } else if (routeName === 'Random') {
+                    iconName = `ios-help-circle${focused ? '' : '-outline'}`;
+                }
+
+
+                // You can return any component that you like here! We usually use an
+                // icon component from react-native-vector-icons
+                return <Ionicons name={iconName} size={32} color={tintColor} />;
+            },
+        }),
+        tabBarOptions: {
+            activeTintColor: 'white',
+            inactiveTintColor: 'white',
+            style: {
+                backgroundColor: 'steelblue',
+            },
+        },
+        tabBarComponent: TabBarBottom,
+        tabBarPosition: 'bottom',
+        animationEnabled: false,
+        swipeEnabled: false,
+
+    }
+);
 
 const styles = StyleSheet.create ({
     container:{
@@ -62,6 +94,7 @@ const styles = StyleSheet.create ({
 
 
 });
+
 
 
 

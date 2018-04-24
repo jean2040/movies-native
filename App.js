@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import  store  from './app/store';
 import Home from './app/components/home';
 import PublishApp from './app/components/publishApp';
+import MovieApp from "./app/index";
 
 export default class App extends React.Component {
   render() {

@@ -48,11 +48,10 @@ class Home extends Component{
         }
     }
 
-    renderItem({item, index}){
+    renderItem({item}){
         const image = 'https://image.tmdb.org/t/p/w154' + item.poster_path;
         return(
             <View style={styles.row}>
-
                 <Text style={styles.title}>
                     {item.title}
                 </Text>

@@ -1,7 +1,5 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 
-// Importing the Sample data
-import Data from '../instructions.json';
 
 export function getData(){
     return(dispatch)=>{
