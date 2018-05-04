@@ -20,7 +20,7 @@ export function getData(){
 
     };
 }
-
+// this is the action that will trigger the  Reducer. It sends the selected item
 export const selectItem = (item) => {
     return(dispatch)=>{
         console.log("action");

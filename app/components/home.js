@@ -22,9 +22,8 @@ class Home extends Component{
         this.state = {};
         this.renderItem = this.renderItem.bind(this);
     }
-
+    //This function is being called by the component to run the action. It sends the item to the action
     itemSelectedHandler = (item)=>{
-
         this.props.selectItem(item);
     };
     itemDeselectedHandler = ()=>{

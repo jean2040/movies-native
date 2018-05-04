@@ -11,8 +11,8 @@ const dataReducer = (state = dataState, action) => {
         case 'SELECT_ITEM':
             console.log('reducer' + action.item);
             return {
-                ...state,
-                selectedItem: action.item
+                ...state, //creates a copy of the state
+                selectedItem: action.item  // assign the item to the selecteditem
             };
         case 'DESELECT_ITEM':
             return{
