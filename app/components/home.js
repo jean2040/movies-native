@@ -7,13 +7,13 @@ import {
     View,
     Text,
     Image,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity
 } from 'react-native';
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import * as Actions from '../actions';
+import ItemDetails from './Itemdetails/itemDetails'
 
 class Home extends Component{
     constructor(props){
@@ -22,6 +22,15 @@ class Home extends Component{
         this.state = {};
         this.renderItem = this.renderItem.bind(this);
     }
+
+    itemSelectedHandler = (item)=>{
+
+        this.props.selectItem(item);
+    };
+    itemDeselectedHandler = ()=>{
+
+        this.props.deselectItem();
+    };
 
     componentDidMount(){
         this.props.getData(); //call the action
@@ -38,11 +47,15 @@ class Home extends Component{
             return(
 
                 <View style={{flex:1, backgroundColor: '#F5F5F5', paddingTop:20}}>
+                    <ItemDetails onModalClose = {this.itemDeselectedHandler}
+                                 selectedItem = {this.props.selectedItem}
+                    />
                     <FlatList
                         ref='listRef'
                         data={this.props.data}
                         renderItem={this.renderItem}
-                        keyExtractor={(item, index) => index}/>
+                        keyExtractor={(item, index) => index}
+                        />
                 </View>
             );
         }
@@ -51,7 +64,8 @@ class Home extends Component{
     renderItem({item}){
         const image = 'https://image.tmdb.org/t/p/w154' + item.poster_path;
         return(
-            <View style={styles.row}>
+            <TouchableOpacity onPress={() => this.itemSelectedHandler(item)}>
+                <View style={styles.row}>
                 <Text style={styles.title}>
                     {item.title}
                 </Text>
@@ -62,6 +76,7 @@ class Home extends Component{
                     {item.overview}
                 </Text>
             </View>
+            </TouchableOpacity>
         )
     }
 
@@ -74,7 +89,8 @@ class Home extends Component{
 function mapStateToProps(state, props){
     return{
         loading: state.dataReducer.loading,
-        data: state.dataReducer.data
+        data: state.dataReducer.data,
+        selectedItem: state.dataReducer.selectedItem
     }
 }
 
