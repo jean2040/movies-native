@@ -8,12 +8,17 @@ import {
     Text,
     Image,
     ActivityIndicator,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
+
+//........... Move this to APP.JS
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as Actions from '../actions';
+//.... END .... Move this to APP.JS
+
 import ItemDetails from './Itemdetails/itemDetails'
+
 
 class Home extends Component{
     constructor(props){
@@ -27,12 +32,11 @@ class Home extends Component{
         this.props.selectItem(item);
     };
     itemDeselectedHandler = ()=>{
-
         this.props.deselectItem();
     };
 
     componentDidMount(){
-        this.props.getData(); //call the action
+        this.props.getMovies(); //call the action
     }
 
     render(){
@@ -52,6 +56,7 @@ class Home extends Component{
                     <FlatList
                         ref='listRef'
                         data={this.props.data}
+                        extraData={this.state}
                         renderItem={this.renderItem}
                         keyExtractor={(item, index) => index}
                         />
@@ -79,7 +84,10 @@ class Home extends Component{
         )
     }
 
-};
+}
+
+//........ Move this to APP.JS
+
 
 // The function takes data from the app current state,
 // and insert/links it into the props of our component.
@@ -103,6 +111,9 @@ function mapDispatchToProps(dispatch) {
 
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+
+//..... END  .. Move this to APP.JS
 
 const styles = StyleSheet.create({
     activityIndicatorContainer:{

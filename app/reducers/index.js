@@ -8,6 +8,15 @@ const dataReducer = (state = dataState, action) => {
         case 'DATA_AVAILABLE':
             state = Object.assign({}, state, {data: action.data, loading:false});
             return state;
+        //..................
+        case 'GET_MOVIES':
+            state = Object.assign({}, state, {data: action.data, loading:false});
+            return state;
+        case 'GET_TVSHOWS':
+            state = Object.assign({}, state, {data: action.data, loading:false});
+            return state;
+        //..................
+
         case 'SELECT_ITEM':
             console.log('reducer' + action.item);
             return {

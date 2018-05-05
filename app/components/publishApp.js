@@ -15,12 +15,27 @@ import Movie from "./movie/movie";
 import Favorites from "./favorites/favorites";
 
 class PublishApp extends Component{
+
+    //......................
+
+    constructor(){
+        super();
+        this.state = { };
+    }
+
+    myCallback = (dataFromChild) => {
+        console.log('My Call Back   =  ' + dataFromChild);
+    };
+    //.....................
+
     render(){
         return(
             <View style={styles.container}>
                 <StatusBar barStyle = "dark-content" hidden = {true}/>
                 <View style={styles.topNav}>
-                    <TopNavigation />
+                    <TopNavigation
+                        callbackFromParent={this.myCallBack}
+                    />
                 </View>
                 <ScrollView style={styles.movieHome}>
                     <Home />
