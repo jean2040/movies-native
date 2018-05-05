@@ -19,6 +19,12 @@ const dataReducer = (state = dataState, action) => {
                 ...state,
                 selectedItem: null
             };
+        case 'RANDOM_MOVIE':
+            console.log('random');
+            return{
+                ...state,
+
+            };
 
 
 

@@ -1,6 +1,7 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 export const SELECT_ITEM = 'SELECT_ITEM';
 export const DESELECT_ITEM = 'SELECT_ITEM';
+export const RANDOM_MOVIE = 'RANDOM_MOVIE';
 
 
 export function getData(){
@@ -33,6 +34,14 @@ export const deselectItem = () => {
     return(dispatch)=>{
         console.log("deselect");
         return dispatch({type: DESELECT_ITEM})
+    };
+
+};
+
+export const randomMovie = () => {
+    return(dispatch)=>{
+        console.log("deselect");
+        return dispatch({type: RANDOM_MOVIE})
     };
 
 };
