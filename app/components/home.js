@@ -9,6 +9,7 @@ import {
     Image,
     ActivityIndicator,
     TouchableOpacity,
+    Switch
 } from 'react-native';
 
 //........... Move this to APP.JS
@@ -24,7 +25,10 @@ class Home extends Component{
     constructor(props){
         super(props);
 
-        this.state = {};
+        this.state = {
+            switchValue: true,
+            titleText: "Movies"
+        };
         this.renderItem = this.renderItem.bind(this);
     }
     //This function is being called by the component to run the action. It sends the item to the action
@@ -38,6 +42,20 @@ class Home extends Component{
     componentDidMount(){
         this.props.getMovies(); //call the action
     }
+    _handleToggleSwitch = () => this.setState(state => ({
+        switchValue: !state.switchValue,
+        titleText: changeText(this.state.switchValue),
+        showData: this.getData(this.state.switchValue)
+}));
+    getData= (switchValue) =>{
+        if(switchValue){
+            this.props.getTV(); //call the action
+        }else{
+            this.props.getMovies(); //call the action
+        }
+    }
+
+
 
     render(){
         if(this.props.loading){
@@ -49,7 +67,18 @@ class Home extends Component{
         }else{
             return(
 
-                <View style={{flex:1, backgroundColor: '#F5F5F5', paddingTop:20}}>
+
+
+                <View style={{flex:1, backgroundColor: '#F5F5F5', padding:25}}>
+                    <View style={{height: 50, width: 100}}>
+                        <Switch
+                            onValueChange={this._handleToggleSwitch}
+                            value = {this.state.switchValue}
+                        />
+                        <Text style={styles.titleType}>
+                            {this.state.titleText}
+                        </Text>
+                    </View>
                     <ItemDetails onModalClose = {this.itemDeselectedHandler}
                                  selectedItem = {this.props.selectedItem}
                     />
@@ -112,7 +141,13 @@ function mapDispatchToProps(dispatch) {
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
-
+function changeText(current){
+    if(current){
+        return "TV Shows"
+    }else {
+        return "Movies"
+    }
+}
 //..... END  .. Move this to APP.JS
 
 const styles = StyleSheet.create({
@@ -131,9 +166,14 @@ const styles = StyleSheet.create({
 
     title:{
         fontSize: 20,
-        fontWeight: "600"
+        fontWeight: "600",
+        marginTop: 0,
     },
-
+    titleType:{
+        fontSize: 16,
+        fontWeight: "500",
+        top: 0
+    },
     description:{
         marginTop: 5,
         fontSize: 14,
@@ -142,7 +182,8 @@ const styles = StyleSheet.create({
         width: 150,
         height: 250,
         alignItems: 'center'
-    }
+    },
+
 });
 
 

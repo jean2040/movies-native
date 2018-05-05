@@ -17,7 +17,6 @@ import * as Actions from '../actions';
 export default class TopNavigation extends Component {
     constructor(props) {
         super(props);
-        this._handleToggleSwitch = this._handleToggleSwitch.bind(this);
 
     }
     state = {
@@ -27,22 +26,18 @@ export default class TopNavigation extends Component {
 
 
 
-
+/*
     _handleToggleSwitch = () => this.setState(state => ({
         switchValue: !state.switchValue,
         titleText: changeText(this.state.switchValue),
         sendIT: this.props.titleText
     }));
-
+*/
         render() {
         return (
             <View style={{flex: 1, flexDirection: 'row'}}>
-                <Switch
-                    onValueChange={this._handleToggleSwitch}
-                    value = {this.state.switchValue}
-                />
-                <Text style={styles.titleType}>
-                    {this.state.titleText}
+                <Text style={styles.appTitle}>
+                    Movie Radar
                 </Text>
             </View>
         );
@@ -64,9 +59,10 @@ function changeText(current){
 
 
 const styles = StyleSheet.create({
-    titleType: {
+    appTitle: {
         fontWeight: 'bold',
         fontSize: 25,
         marginTop: 6,
+        paddingLeft: 10
     },
 });
